@@ -1,11 +1,14 @@
 [
   {
-    "line": "Oi meu nome é tom!"
+    "name": "Tom",
+    "line": "Oi, meu nome e tom!"
   },
   {
+    "name": "Coiso",
     "line": "Espero que seu dia esteja sendo bom!!!!"
   },
   {
+    "name": "Eu",
     "line": "Pessoalmente, estive muito cansado... to fazendo esse ngc de codigo por horas ja!!! Mas, ao menos ta dando certo...!!"
   }
 ]

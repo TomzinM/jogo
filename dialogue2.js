@@ -1,7 +1,11 @@
     let dialogLines = [];
+    let namePerson = [];
     let currentLineIndex = 0;
+    let currentNameIndex = 0;
     const element = document.querySelector(".text");
     const dialogSpan = document.getElementById("dialog");
+    const nameLine = document.getElementById("nameSpan")
+    const nameDiv = document.querySelector(".personName")
 
     async function getData() {
       const url = "thing.json";
@@ -11,12 +15,21 @@
           throw new Error(`Response status: ${response.status}`);
         }
         const result = await response.json();
-        dialogLines = result.map(item => item.line);  
+        dialogLines = result.map(item => item.line);
+        namePerson = result.map(item => item.name)  
         console.log('JSON data loaded:', dialogLines);
+        console.log('JSON data loaded:', namePerson);
+  
+        if (namePerson.length > 0) {
+          nameDiv.innerHTML = namePerson[0], currentNameIndex
+        }
+
         if (dialogLines.length > 0) {
           textTypingEffect(dialogLines[0], element);
         }
-      } catch (error) {
+
+      } 
+        catch (error) {
         console.error('Fetch error:', error.message);
         dialogSpan.textContent = 'Error loading data';
       }
@@ -52,7 +65,9 @@
       }
       else if(currentLineIndex < dialogLines.length) {
         currentLineIndex++;
+        currentNameIndex++;
         textTypingEffect(dialogLines[currentLineIndex], element);
+        nameDiv.innerHTML = namePerson[currentNameIndex]
 
 
       } else {
@@ -62,6 +77,5 @@
     }
 
 
-    document.getElementById("next-line-button").addEventListener("click", nextLine);
-
     window.addEventListener("load", getData);  
+    document.getElementById("next-line-button").addEventListener("click", nextLine);
